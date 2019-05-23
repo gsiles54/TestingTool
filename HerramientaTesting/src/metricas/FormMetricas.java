@@ -191,7 +191,7 @@ public class FormMetricas extends JFrame {
 		tc = tcm.getColumn(0);
 		tc.setPreferredWidth(200);
 
-		tc = tcm.getColumn(1);
+	/*	tc = tcm.getColumn(1);
 		tc.setPreferredWidth(90);
 		//tc.setCellRenderer(new NumberCellRenderer());
 
@@ -239,7 +239,7 @@ public class FormMetricas extends JFrame {
 		tc.setPreferredWidth(90);
 		//tc.setCellRenderer(new NumberCellRenderer());
 		
-		tc = tcm.getColumn(13);
+		tc = tcm.getColumn(13);*/
 		tc.setPreferredWidth(90);
 		//tc.setCellRenderer(new NumberCellRenderer());
 	}

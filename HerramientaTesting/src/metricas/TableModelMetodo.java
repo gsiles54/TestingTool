@@ -62,7 +62,7 @@ public class TableModelMetodo extends AbstractTableModel {
 
 	@Override
 	public int getColumnCount() {
-		return 14;
+		return 1;
 	}
 
 	@Override
