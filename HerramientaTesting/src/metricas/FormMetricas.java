@@ -44,10 +44,10 @@ import javax.swing.ImageIcon;
 import java.awt.Toolkit;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import javax.swing.JTextPane;
+import java.awt.GridLayout;
+
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Window.Type;
+import javax.swing.JTextField;
 
 public class FormMetricas extends JFrame {
 	private JPanel contentPane;
@@ -55,7 +55,8 @@ public class FormMetricas extends JFrame {
 	private JSplitPane splitPane1;
 	private TableModelMetodo modelTable;
 	private JSplitPane splitPane2;
-	private JScrollPane scrlMetricas;
+	private JSplitPane splitPaneMetricas;
+	private JScrollPane scrlMetodos;
 	private JTable tblMetricas;
 	private JScrollPane scrlCodigo;
 	private JTextArea txtCodigo;
@@ -63,6 +64,31 @@ public class FormMetricas extends JFrame {
 	private JScrollPane scrlArchivos;
 	private JList<File> lstArchivos;
 	private JLabel lblNewLabel;
+	private JPanel scrlMetricas;
+	private JLabel lineasReales;
+	private JTextField lineasRealesTextField;
+	private JLabel lineasCodigo;
+	private JTextField lineasCodigoTextField;
+	private JLabel lineasBlancas;
+	private JTextField lineasBlancasTextField;
+	private JLabel lineasComentarios;
+	private JTextField lineasComentariosTextField;
+	private JLabel porcentajeComentarios;
+	private JTextField porcentajeComentariosTextField;
+	private JLabel fanIn;
+	private JTextField fanInTextField;
+	private JLabel fanOut;
+	private JTextField fanOutTextField;
+	private JLabel complejidadCiclomatica;
+	private JTextField complejidadCiclomaticaTextField;
+	private JLabel halsteadLargo;
+	private JTextField halsteadLargoTextField;
+	private JLabel halsteadVolumen;
+	private JTextField halsteadVolumenTextField;
+	private JLabel operandos;
+	private JTextField operandosTextField;
+	private JLabel operadores;
+	private JTextField operadoresTextField;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -105,18 +131,129 @@ public class FormMetricas extends JFrame {
 		splitPane2.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		splitPane1.setRightComponent(splitPane2);
 
-
-		scrlMetricas = new JScrollPane();
-		scrlMetricas.setToolTipText("Muestra todos los metodos del archivo .Java junto con sus metricas");
+		
+		splitPaneMetricas = new JSplitPane();
+		splitPaneMetricas.setOrientation(JSplitPane.VERTICAL_SPLIT);
+		
+		scrlMetodos = new JScrollPane();
+		scrlMetodos.setToolTipText("Muestra todos los metodos del archivo .Java");
+		scrlMetodos.setPreferredSize(new Dimension(150, 150));
+		splitPane2.setLeftComponent(splitPaneMetricas);
+		splitPaneMetricas.setLeftComponent(scrlMetodos);
+		
+		
+		scrlMetricas = new JPanel();
+		GridLayout gridLayout = new GridLayout(0,2);
+		scrlMetricas.setLayout(gridLayout);
+		scrlMetricas.setToolTipText("Muestra las metricas del metodo seleccionado");
 		scrlMetricas.setPreferredSize(new Dimension(0, 0));
-		splitPane2.setLeftComponent(scrlMetricas);
+		splitPaneMetricas.setRightComponent(scrlMetricas);
+		
+		lineasReales = new JLabel("Lineas reales");
+		lineasReales.setVerticalAlignment(SwingConstants.TOP);
+		lineasReales.setHorizontalAlignment(SwingConstants.LEFT);
+		scrlMetricas.add(lineasReales);
+		
+		lineasRealesTextField = new JTextField();
+		lineasRealesTextField.setEditable(false);
+		lineasRealesTextField.setHorizontalAlignment(SwingConstants.LEFT);
+		scrlMetricas.add(lineasRealesTextField);
+		lineasRealesTextField.setColumns(10);
+		
+		lineasCodigo = new JLabel("Lineas de codigo");
+		scrlMetricas.add(lineasCodigo);
+		
+		lineasCodigoTextField = new JTextField();
+		lineasCodigoTextField.setEditable(false);
+		scrlMetricas.add(lineasCodigoTextField);
+		lineasCodigoTextField.setColumns(10);
+		
+		lineasBlancas = new JLabel("Lineas blancas");
+		scrlMetricas.add(lineasBlancas);
+		
+		lineasBlancasTextField = new JTextField();
+		lineasBlancasTextField.setEditable(false);
+		scrlMetricas.add(lineasBlancasTextField);
+		lineasBlancasTextField.setColumns(10);
+		
+		lineasComentarios = new JLabel("Lineas de comentarios");
+		scrlMetricas.add(lineasComentarios);
+		
+		lineasComentariosTextField = new JTextField();
+		lineasComentariosTextField.setEditable(false);
+		scrlMetricas.add(lineasComentariosTextField);
+		lineasComentariosTextField.setColumns(10);
+		
+		porcentajeComentarios = new JLabel("Porcentaje comentarios");
+		scrlMetricas.add(porcentajeComentarios);
+		
+		porcentajeComentariosTextField = new JTextField();
+		porcentajeComentariosTextField.setEditable(false);
+		scrlMetricas.add(porcentajeComentariosTextField);
+		porcentajeComentariosTextField.setColumns(10);
+		
+		fanIn = new JLabel("Fan In");
+		scrlMetricas.add(fanIn);
+		
+		fanInTextField = new JTextField();
+		fanInTextField.setEditable(false);
+		scrlMetricas.add(fanInTextField);
+		fanInTextField.setColumns(10);
+		
+		fanOut = new JLabel("Fan Out");
+		scrlMetricas.add(fanOut);
+		
+		fanOutTextField = new JTextField();
+		fanOutTextField.setEditable(false);
+		scrlMetricas.add(fanOutTextField);
+		fanOutTextField.setColumns(10);
+		
+		complejidadCiclomatica = new JLabel("Complejidad Ciclomatica");
+		scrlMetricas.add(complejidadCiclomatica);
+		
+		complejidadCiclomaticaTextField = new JTextField();
+		complejidadCiclomaticaTextField.setEditable(false);
+		scrlMetricas.add(complejidadCiclomaticaTextField);
+		complejidadCiclomaticaTextField.setColumns(10);
+		
+		halsteadLargo = new JLabel("Halstead largo");
+		scrlMetricas.add(halsteadLargo);
+		
+		halsteadLargoTextField = new JTextField();
+		halsteadLargoTextField.setEditable(false);
+		scrlMetricas.add(halsteadLargoTextField);
+		halsteadLargoTextField.setColumns(10);
+		
+		halsteadVolumen = new JLabel("Halstead volumen");
+		scrlMetricas.add(halsteadVolumen);
+		
+		halsteadVolumenTextField = new JTextField();
+		halsteadVolumenTextField.setEditable(false);
+		scrlMetricas.add(halsteadVolumenTextField);
+		halsteadVolumenTextField.setColumns(10);
+		
+		operandos = new JLabel("Operandos");
+		scrlMetricas.add(operandos);
+		
+		operandosTextField = new JTextField();
+		operandosTextField.setEditable(false);
+		scrlMetricas.add(operandosTextField);
+		operandosTextField.setColumns(10);
+		
+		operadores = new JLabel("Operadores");
+		scrlMetricas.add(operadores);
+		
+		operadoresTextField = new JTextField();
+		operadoresTextField.setEditable(false);
+		scrlMetricas.add(operadoresTextField);
+		operadoresTextField.setColumns(10);
+				
 
 		modelTable = new TableModelMetodo(null);
 		tblMetricas = new JTable(modelTable);
 		tblMetricas.setFont(new Font("Courier New", Font.PLAIN, 12));
 		tblMetricas.setGridColor(SystemColor.control);
 		tblMetricas.setRowHeight(25);
-		//tblMetricas.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		tblMetricas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		iniciarTabla();
 		
@@ -127,8 +264,7 @@ public class FormMetricas extends JFrame {
 			}
 		});
 
-		//"RLOC: Lineas (lineas de código + lineas blancas)\n LOC: Lineas de código\n BLOC: Lineas blancas\n COM: comentarios\n %COM: porcentaje de comentarios\n FIN: Fan In\n FOUT: Fan Out\n NCC: Complejidad ciclomática\n HN: Longitud\n HV: Volumen\n HE: Esfuerzo"
-		scrlMetricas.setViewportView(tblMetricas);
+		scrlMetodos.setViewportView(tblMetricas);
 
 		scrlCodigo = new JScrollPane();
 		scrlCodigo.setPreferredSize(new Dimension(0, 0));
@@ -188,60 +324,8 @@ public class FormMetricas extends JFrame {
 		TableColumnModel tcm = tblMetricas.getColumnModel();
 		TableColumn tc;
 
-		tc = tcm.getColumn(0);
-		tc.setPreferredWidth(200);
-
-	/*	tc = tcm.getColumn(1);
+		tc = tcm.getColumn(0);	
 		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
-
-		tc = tcm.getColumn(2);
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
-
-		tc = tcm.getColumn(3);
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
-
-		tc = tcm.getColumn(4);
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
-
-		tc = tcm.getColumn(5);
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new PercentCellRenderer());
-
-		tc = tcm.getColumn(6);
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
-		
-		tc = tcm.getColumn(7);
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
-		
-		tc = tcm.getColumn(8);
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
-	
-		tc = tcm.getColumn(9);
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
-		
-		tc = tcm.getColumn(10);
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
-		
-		tc = tcm.getColumn(11);
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
-		
-		tc = tcm.getColumn(12);
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
-		
-		tc = tcm.getColumn(13);*/
-		tc.setPreferredWidth(90);
-		//tc.setCellRenderer(new NumberCellRenderer());
 	}
 
 	private void buscarCarpeta() {
@@ -330,7 +414,21 @@ public class FormMetricas extends JFrame {
 		if (row != -1) {
 			Metodo m = (Metodo) tblMetricas.getValueAt(row, 0);
 			txtCodigo.setText(m.getCodigo());
-			txtCodigo.setCaretPosition(0);			
+			txtCodigo.setCaretPosition(0);
+			lineasRealesTextField.setText(""+m.getLineasReales());
+			lineasCodigoTextField.setText(""+m.getLineasCodigo());
+			lineasComentariosTextField.setText(""+m.getLineasComentario());
+			lineasBlancasTextField.setText(""+m.getLineasBlancas());
+			porcentajeComentariosTextField.setText(""+m.getPorcentajeComentarios());
+			fanInTextField.setText(""+m.getFanIn());
+			fanOutTextField.setText(""+m.getFanOut());
+			complejidadCiclomaticaTextField.setText(""+m.getComplejidadCiclomatica());
+			halsteadLargoTextField.setText(""+m.getHalsteadLargo());
+			halsteadVolumenTextField.setText(""+m.getHalsteadVolumen());
+			operadoresTextField.setText(""+m.getOperadores());
+			operandosTextField.setText(""+m.getOperandos());
+			operandosTextField.setToolTipText(""+m.getOperandos());
+			
 		}
 	}
 	

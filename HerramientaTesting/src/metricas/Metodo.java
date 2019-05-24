@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Metodo {
@@ -30,8 +29,6 @@ public class Metodo {
 	private double halsteadVolumen = 0;
 	private double halsteadNivelDificultad = 0;
 	private double halsteadNivelPrograma = 0;
-	private double halsteadEsfuerzo = 0;
-	private double halsteadEntendimiento = 0;
 	
 	private ArrayList<String> operandos;
 	private ArrayList<String> operadores;
@@ -116,9 +113,7 @@ public class Metodo {
 		return halsteadNivelPrograma;
 	}
 
-	public double getHalsteadEsfuerzo() {
-		return halsteadEsfuerzo;
-	}
+
 	
 
 	public ArrayList<String> getOperadores() {
@@ -223,8 +218,7 @@ public class Metodo {
 		if (n2 > 0) { 
 			this.halsteadNivelDificultad = (n1 / 2.0) * (N2 / n2);
 			this.halsteadNivelPrograma = 1 / this.halsteadNivelDificultad;
-			this.halsteadEsfuerzo = this.halsteadVolumen * this.halsteadNivelDificultad;
-			this.halsteadEntendimiento = this.halsteadEsfuerzo / 18.0;
+
 		}
 		}
 	}

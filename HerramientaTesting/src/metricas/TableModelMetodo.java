@@ -50,10 +50,8 @@ public class TableModelMetodo extends AbstractTableModel {
 		case 10:
 			return "Vol";
 		case 11:
-			return "Esfuerzo";	
-		case 12:
 			return "Operandos";
-		case 13:
+		case 12:
 			return "Operadores";
 		}
 
@@ -93,10 +91,8 @@ public class TableModelMetodo extends AbstractTableModel {
 		case 10:
 			return m.getHalsteadVolumen();
 		case 11:
-			return m.getHalsteadEsfuerzo();
-		case 12:
 			return m.getOperandos();
-		case 13:
+		case 12:
 			return m.getOperadores();
 		}
 
